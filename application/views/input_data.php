@@ -29,6 +29,11 @@
     <td>Pekerjaan</td>
     <td><input type="text" name ="pekerjaan"></td>
 </tr>
+</tr>
+<tr>
+    <td>Upload Foto</td>
+    <td><input type="file" name ="foto"></td>
+</tr>
 <tr>
     <td></td>
     <td><input type="submit" value="tambah"> <input type="reset" value="batal">

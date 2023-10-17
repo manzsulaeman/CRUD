@@ -42,12 +42,26 @@ class Kampus extends CI_controller{
         $alamat = $this->input->post('alamat');
         $pekerjaan = $this->input->post('pekerjaan');
 
+        $config['max_size']=2048;
+        $config['allowed_types']="png|jpg|jpeg|gif";
+        $config['remove_spaces']=TRUE;
+        $config['overwrite']=TRUE;
+        $config['upload_path']=FCPATH.'images';
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        $this->upload->do_upload('foto');
+        $data_image=$this->upload->data->('file_name');
+        $location='images/';
+        $foto=$location.$data_image;
+
         $data = array(
             'nim' =>$nim,
             'nama' =>$nama,
             'alamat' =>$alamat,
-            'pekerjaan' =>$pekerjaan
-
+            'pekerjaan' =>$pekerjaan,
+            'foto' =>$foto
         );
         $where= array(
             'id' =>$id
