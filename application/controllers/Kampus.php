@@ -4,6 +4,7 @@ class Kampus extends CI_Controller {
         parent::__construct();
         $this->load->model('m_data');
         $this->load->helper('url');
+        $this->load->library('form_validation');
     }
 
 	function index()
@@ -17,6 +18,13 @@ class Kampus extends CI_Controller {
     }
 
     function tambah_aksi(){
+        $this->form_validation->set_rules('nim','NIM','required|min_length[8]|max_length[8]');
+        $this->form_validation->set_rules('nama','Nama','required|alpha|min_length[3]|max_length[29]');
+        $this->form_validation->set_rules('alamat','Alamat','required|alpha');
+        $this->form_validation->set_rules('pekerjaan','Pekerjaan','required|alpha');
+
+        if($this->form_validation->run() == TRUE){
+
         $nim = $this->input->post('nim');
         $nama = $this->input->post('nama');
         $alamat = $this->input->post('alamat');
@@ -45,6 +53,9 @@ class Kampus extends CI_Controller {
         );
         $this->m_data->input_data($data,'mahasiswa');
         redirect('kampus/index');
+    }else{
+        $this->load->view('input_data');
+    }
     }
 
     function edit($id){

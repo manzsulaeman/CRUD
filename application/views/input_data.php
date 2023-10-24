@@ -7,7 +7,8 @@
 </head>
 <body>
     <center>
-        Input Data mahasiswa
+        <h1>INput Data Mahasiswa</h1>
+        <label style="color:#ff0000"><?php echo validation_errors(); ?></label>
     </center>
     <form action="<?php echo base_url() . 'index.php/kampus/tambah_aksi'; ?>" method="post" enctype="multipart/form-data">
     <table>
